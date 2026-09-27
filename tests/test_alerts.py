@@ -37,18 +37,22 @@ def test_console_alert_without_details(capsys):
     assert "Rollback occurred." in captured.out
 
 
-def test_alert_factory_returns_alert_manager():
+def test_alert_factory_returns_alert_manager(monkeypatch):
     from src.alerts.alert_factory import get_alert_manager
     from src.alerts.alert_manager import AlertManager
+
+    monkeypatch.setenv("ALERT_PROVIDER", "console")
 
     alert_manager = get_alert_manager()
 
     assert isinstance(alert_manager, AlertManager)
 
 
-def test_alert_factory_returns_console_manager():
+def test_alert_factory_returns_console_manager(monkeypatch):
     from src.alerts.alert_factory import get_alert_manager
     from src.alerts.console_alert import ConsoleAlertManager
+
+    monkeypatch.setenv("ALERT_PROVIDER", "console")
 
     alert_manager = get_alert_manager()
 

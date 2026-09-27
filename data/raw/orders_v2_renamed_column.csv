@@ -1,0 +1,6 @@
+client_id,customer_name,email,age,product,quantity,price,order_date
+C001,Arjun Mehta,arjun@example.com,21,Laptop,1,65000,2026-09-20
+C002,Priya Sharma,priya@example.com,24,Mouse,2,1200,2026-09-20
+C003,Rahul Kumar,rahul@example.com,22,Keyboard,1,2500,2026-09-21
+C004,Ananya Rao,ananya@example.com,23,Monitor,1,18000,2026-09-21
+C005,Aditya Singh,aditya@example.com,25,Headphones,2,3500,2026-09-22

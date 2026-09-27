@@ -10,7 +10,8 @@ from src.repair.repair_engine import execute_repair_plan
 from src.validation.post_repair_validator import validate_repaired_data
 from src.monitoring.audit_logger import log_event
 from src.recovery.rollback import create_backup, rollback
-from src.alerts.console_alert import ConsoleAlertManager
+from src.alerts.alert_manager import AlertManager
+from src.alerts.alert_factory import get_alert_manager
 
 
 def run_pipeline(
@@ -18,7 +19,7 @@ def run_pipeline(
     expected_columns: list[str],
     expected_dtypes: dict[str, str],
     ai_provider: AIProvider | None = None,
-    alert_manager: ConsoleAlertManager | None = None,
+    alert_manager: AlertManager | None = None,
 ) -> dict:
     """
     Run detection, AI diagnosis, risk classification, decision,
@@ -29,7 +30,7 @@ def run_pipeline(
         ai_provider = MockAIProvider()
 
     if alert_manager is None:
-        alert_manager = ConsoleAlertManager()
+        alert_manager = get_alert_manager()
 
     analysis = analyze_schema(
         data,

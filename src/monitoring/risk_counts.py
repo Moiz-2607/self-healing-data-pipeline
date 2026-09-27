@@ -12,7 +12,6 @@ def get_risk_counts() -> dict[str, int]:
 
     for event in events:
         details = event.get("details", {})
-
         risk_level = details.get("risk_level")
 
         if risk_level:

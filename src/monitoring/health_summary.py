@@ -1,13 +1,12 @@
 import json
 from pathlib import Path
 
-
-LOG_FILE = Path("logs/audit.jsonl")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+LOG_FILE = PROJECT_ROOT / "logs" / "audit.jsonl"
 
 
 def load_audit_events() -> list[dict]:
     """Load all audit events from the JSONL audit log."""
-
     if not LOG_FILE.exists():
         return []
 
@@ -27,7 +26,6 @@ def load_audit_events() -> list[dict]:
 
 def build_health_summary() -> dict:
     """Build a high-level health summary from audit events."""
-
     events = load_audit_events()
 
     summary = {
@@ -43,13 +41,10 @@ def build_health_summary() -> dict:
 
         if event_type == "REPAIR_SUCCESS":
             summary["successful_repairs"] += 1
-
         elif event_type == "ROLLBACK":
             summary["rollbacks"] += 1
-
         elif event_type == "REVIEW_REQUIRED":
             summary["review_required"] += 1
-
         elif event_type == "PIPELINE_SUCCESS":
             summary["pipeline_success"] += 1
 
